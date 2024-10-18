@@ -1,0 +1,101 @@
+/* CadastroForm.css */
+
+body {
+    font-family: 'Poppins', sans-serif; 
+    background: linear-gradient(135deg, #036654, #142ea1);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    overflow: hidden;
+}
+
+.form-container {
+    max-width: 800px; 
+    padding: 40px;
+    border-radius: 16px; 
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px); 
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    text-align: center; 
+}
+
+.form-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+    color: #000000; 
+    margin-bottom: 30px;
+    font-size: 28px;    
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.form-group {
+    margin-bottom: 25px; 
+    text-align: center; 
+}
+
+.label {
+    display: block; 
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 16px; 
+    font-weight: 500;
+}
+
+.input {
+    width: 65%; 
+    padding: 15px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    font-size: 18px; 
+    background: #f1f1f1;
+    transition: border-color 0.4s, background 0.4s, box-shadow 0.4s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; 
+}
+
+.input:focus {
+    border-color: #007bff; 
+    background: #fff;
+    box-shadow: 0 8px 16px rgba(0, 123, 255, 0.2);
+    outline: none; 
+}
+
+.button {
+    width: 60%; 
+    padding: 15px;
+    border: none;
+    border-radius: 8px; 
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white; 
+    font-size: 18px; 
+    font-weight: bold;
+    cursor: pointer; 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: background 0.4s, box-shadow 0.4s, transform 0.3s ease-in-out;
+    margin: 20px auto; 
+}
+
+.button:hover {
+    background: linear-gradient(135deg, #2575fc, #6a11cb); 
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); 
+    transform: translateY(-5px); 
+}
+
+.button:active {
+    transform: translateY(0); 
+}
+
+p {
+    text-align: center;
+    color: #222;
+    font-size: 14px;
+    margin-top: 20px;
+}
