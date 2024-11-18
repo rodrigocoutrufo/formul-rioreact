@@ -44,7 +44,7 @@ const App = () => {
     );
 };
 
-// Estilos
+
 const styles = {
     navbar: {
         backgroundColor: '#007bff',
