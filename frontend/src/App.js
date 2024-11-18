@@ -1,4 +1,4 @@
-// src/App.js
+
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import CadastroForm from './components/CadastroForm';
@@ -7,8 +7,8 @@ import EditUser from './components/EditUser';
 import CadastroProduto from './components/CadastroProduto';
 import EditProduct from './components/EditProduct';
 import ListaProduto from './components/ListaProduto';
-import AddSale from './components/AddSale'; // Para cadastrar vendas
-import SalesList from './components/SalesList'; // Para listar vendas
+import AddSale from './components/AddSale'; 
+import SalesList from './components/SalesList';
 
 const App = () => {
     return (
