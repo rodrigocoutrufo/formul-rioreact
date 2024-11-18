@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './SalesList.css'; // Certifique-se de criar este arquivo para a estilização
+import './SalesList.css';
 
 const SalesList = () => {
     const [vendas, setVendas] = useState([]);
