@@ -1,16 +1,16 @@
-// src/components/EditProduct.js
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './EditProduct.css'; // Importando o CSS para estilização
+import './EditProduct.css'; 
 
 const EditProduct = () => {
-    const { id } = useParams();  // Pega o ID do produto da URL
+    const { id } = useParams();  
     const navigate = useNavigate();
     const [produto, setProduto] = useState({ nome: '', preco: '', quantidade: '', usuario_id: '' });
     const [usuarios, setUsuarios] = useState([]);
 
-    // Buscar produto e usuários ao carregar o componente
+    
     useEffect(() => {
         const fetchProduto = async () => {
             try {
@@ -49,7 +49,7 @@ const EditProduct = () => {
                     'Content-Type': 'application/json',
                 },
             });
-            navigate('/produtos'); // Redireciona para a página de lista de produtos
+            navigate('/produtos'); 
         } catch (error) {
             console.error('Erro ao atualizar produto:', error);
         }
