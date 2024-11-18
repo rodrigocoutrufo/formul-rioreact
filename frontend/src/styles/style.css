@@ -1,0 +1,124 @@
+
+
+body {
+    font-family: 'Poppins', sans-serif; 
+    background: linear-gradient(135deg, #0a3d62, #3c6382);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #fff;
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.container {
+    width: 100%;
+    max-width: 800px; 
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px; 
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.4s ease;
+    padding: 40px; 
+}
+
+.container:hover {
+    transform: translateY(-5px);
+}
+
+.container-header {
+    background: #4a69bd;
+    padding: 20px;
+    text-align: center;
+}
+
+.container-header h2 {
+    color: #fff;
+    margin: 0;
+    font-size: 28px;
+}
+
+.container-body {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 25px; 
+}
+
+.label {
+    display: block; 
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: 500;
+}
+
+.input {
+    width: 100%; 
+    padding: 15px;
+    border: 2px solid #4a69bd;
+    border-radius: 8px;
+    font-size: 16px; 
+    background: #f8f9fa;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input:focus {
+    border-color: #007bff; 
+    background: #fff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+    outline: none; 
+}
+
+.button {
+    width: 100%; 
+    padding: 15px;
+    border: none;
+    border-radius: 8px; 
+    background: linear-gradient(135deg, #4a69bd, #6a11cb);
+    color: white; 
+    font-size: 18px; 
+    font-weight: bold;
+    cursor: pointer; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s, box-shadow 0.3s, transform 0.3s ease;
+    margin-top: 15px; 
+}
+
+.button:hover {
+    background: linear-gradient(135deg, #6a11cb, #4a69bd); 
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2); 
+    transform: translateY(-3px); 
+}
+
+.button:active {
+    transform: translateY(0); 
+}
+
+.mensagem {
+    color: #222;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.footer {
+    padding: 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+    border-top: 1px solid #e6e6e6;
+}
+
+.footer p {
+    color: #777;
+    font-size: 14px;
+    margin: 0;
+}
