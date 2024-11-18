@@ -5,14 +5,14 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3001"}}, supports_credentials=True)
 
-# Configuração do banco de dados
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:RodrigoMYSQL123@127.0.0.1/Cadastro'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# Modelos de dados
+
 class Usuario(db.Model):
-    __tablename__ = 'usuario'  # Especificando o nome da tabela no banco de dados
+    __tablename__ = 'usuario'  
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=False)
@@ -21,7 +21,7 @@ class Usuario(db.Model):
     produtos = db.relationship('Produto', backref='usuario', lazy=True)
 
 class Produto(db.Model):
-    __tablename__ = 'Produto'  # Especificando o nome da tabela no banco de dados
+    __tablename__ = 'Produto'  
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), nullable=False)
     preco = db.Column(db.Float, nullable=False)
@@ -29,7 +29,7 @@ class Produto(db.Model):
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
 
 class Venda(db.Model):
-    __tablename__ = 'Venda'  # Especificando o nome da tabela no banco de dados
+    __tablename__ = 'Venda'  
     id = db.Column(db.Integer, primary_key=True)
     produto_id = db.Column(db.Integer, db.ForeignKey('Produto.id'), nullable=False)
     vendedor_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
@@ -41,16 +41,16 @@ class Venda(db.Model):
     vendedor = db.relationship('Usuario', foreign_keys=[vendedor_id], backref='vendas_feitas', lazy=True)
     comprador = db.relationship('Usuario', foreign_keys=[comprador_id], backref='vendas_recebidas', lazy=True)
 
-# Criação das tabelas no banco de dados (se não existirem)
+
 @app.before_first_request
 def create_tables():
     try:
-        db.create_all()  # Cria as tabelas caso ainda não existam
+        db.create_all()  
         print("Tabelas criadas com sucesso!")
     except Exception as e:
         print(f"Erro ao criar tabelas: {e}")
 
-# Rota para cadastrar usuário
+
 @app.route('/cadastrar', methods=['POST'])
 def cadastrar_usuario():
     data = request.json
@@ -65,7 +65,7 @@ def cadastrar_usuario():
 
     return jsonify({'message': 'Cadastro realizado com sucesso!'}), 200
 
-# Rota para listar usuários
+
 @app.route('/usuarios', methods=['GET'])
 def listar_usuarios():
     usuarios = Usuario.query.all()
@@ -76,13 +76,13 @@ def listar_usuarios():
 def update_usuario(id):
     usuario = Usuario.query.get(id)
     if usuario:
-        # Atualizar os dados do usuário
+       
         usuario.nome = request.json.get('nome', usuario.nome)
         usuario.email = request.json.get('email', usuario.email)
         usuario.cpf_cnpj = request.json.get('cpf_cnpj', usuario.cpf_cnpj)
         usuario.senha = request.json.get('senha', usuario.senha)
 
-        db.session.commit()  # Salvar as alterações no banco de dados
+        db.session.commit()  
         return jsonify({'message': 'Usuário atualizado com sucesso'}), 200
     else:
         return jsonify({'message': 'Usuário não encontrado'}), 404
@@ -101,7 +101,7 @@ def get_usuario(id):
     else:
         return jsonify({'message': 'Usuário não encontrado'}), 404
 
-# Rota para adicionar produto
+
 @app.route('/produto', methods=['POST'])
 def adicionar_produto():
     data = request.json
@@ -120,7 +120,7 @@ def adicionar_produto():
     db.session.commit()
     return jsonify({'message': 'Produto adicionado com sucesso!'}), 201
 
-# Rota para listar produtos
+
 @app.route('/produtos', methods=['GET'])
 def listar_produtos():
     produtos = Produto.query.all()
@@ -136,7 +136,7 @@ def listar_produtos():
     ]
     return jsonify(produtos_list), 200
 
-# Rota para editar produto
+
 @app.route('/produto/<int:id>', methods=['PUT'])
 def editar_produto(id):
     data = request.json
@@ -154,7 +154,7 @@ def editar_produto(id):
         return jsonify({'message': 'Produto atualizado com sucesso!'}), 200
     return jsonify({'message': 'Produto não encontrado'}), 404
 
-# Rota para obter produto específico
+
 @app.route('/produto/<int:id>', methods=['GET'])
 def get_produto(id):
     produto = Produto.query.get(id)
@@ -169,7 +169,7 @@ def get_produto(id):
     else:
         return jsonify({'message': 'Produto não encontrado'}), 404
 
-# Rota para listar vendas
+
 @app.route('/vendas', methods=['GET'])
 def listar_vendas():
     vendas = Venda.query.all()
@@ -186,7 +186,7 @@ def listar_vendas():
     ]
     return jsonify(vendas_list), 200
 
-# Rota para cadastrar venda
+
 @app.route('/venda', methods=['POST'])
 def add_venda():
     try:
@@ -194,27 +194,27 @@ def add_venda():
         produto_id = data['produto_id']
         quantidade = data['quantidade']
 
-        # Verificar se a quantidade é um número inteiro
+        
         if not isinstance(quantidade, int):
             return jsonify({'message': 'Quantidade deve ser um número inteiro'}), 400
 
-        # Verificar se o produto existe e se há estoque suficiente
+        
         produto = Produto.query.get(produto_id)
         if not produto:
             return jsonify({'message': 'Produto não encontrado'}), 404
 
-        # Certificar-se de que produto.quantidade é um número inteiro
+       
         if not isinstance(produto.quantidade, int):
             return jsonify({'message': 'Erro no estoque do produto. Valor incorreto.'}), 500
 
         if produto.quantidade < quantidade:
             return jsonify({'message': 'Estoque insuficiente'}), 400
 
-        # Calcular o total da venda (certificando que preco é float e quantidade é int)
-        preco = float(produto.preco)  # Garantir que o preço seja float
+        
+        preco = float(produto.preco) 
         total = preco * quantidade
 
-        # Criar a venda
+       
         venda = Venda(
             produto_id=produto_id,
             vendedor_id=data['vendedor_id'],
@@ -223,7 +223,7 @@ def add_venda():
             total=total
         )
 
-        # Atualizar o estoque do produto
+        
         produto.quantidade -= quantidade
 
         db.session.add(venda)
