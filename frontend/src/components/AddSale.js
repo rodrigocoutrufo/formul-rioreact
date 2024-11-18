@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import api from '../axiosConfig'; // Agora importando a instância configurada do Axios
-import './AddSale.css'; // Certifique-se de criar este arquivo para estilização
+import api from '../axiosConfig'; 
+import './AddSale.css'; 
 
 const AddSale = () => {
     const [produtos, setProdutos] = useState([]);
@@ -15,7 +15,7 @@ const AddSale = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const produtosRes = await api.get('/produtos'); // Usando a URL base configurada
+                const produtosRes = await api.get('/produtos'); 
                 const usuariosRes = await api.get('/usuarios');
                 setProdutos(produtosRes.data);
                 setUsuarios(usuariosRes.data);
@@ -36,7 +36,6 @@ const AddSale = () => {
     
         const { produto_id, vendedor_id, comprador_id, quantidade } = venda;
     
-        // Verificar se todos os campos estão preenchidos
         if (!produto_id || !vendedor_id || !comprador_id || !quantidade) {
             alert('Por favor, preencha todos os campos');
             return;
@@ -46,7 +45,7 @@ const AddSale = () => {
             produto_id,
             vendedor_id,
             comprador_id,
-            quantidade: parseInt(quantidade), // Garantir que a quantidade seja um número
+            quantidade: parseInt(quantidade), 
         };
     
         try {
@@ -59,7 +58,7 @@ const AddSale = () => {
                 console.error('Resposta da API sem dados:', response);
             }
         } catch (error) {
-            // Verificar erro na requisição
+           
             if (error.response) {
                 console.error("Erro ao cadastrar venda: ", error.response.data);
             } else {
