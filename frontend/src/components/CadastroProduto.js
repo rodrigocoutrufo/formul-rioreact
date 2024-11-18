@@ -7,16 +7,16 @@ const CadastroProduto = () => {
     const [nome, setNome] = useState('');
     const [preco, setPreco] = useState('');
     const [quantidade, setQuantidade] = useState('');
-    const [usuarioId, setUsuarioId] = useState(''); // Novo estado para o usuário selecionado
-    const [usuarios, setUsuarios] = useState([]); // Estado para armazenar a lista de usuários
+    const [usuarioId, setUsuarioId] = useState(''); 
+    const [usuarios, setUsuarios] = useState([]); 
     const [mensagem, setMensagem] = useState('');
     const navigate = useNavigate();
 
-    // Obter a lista de usuários ao carregar o componente
+   
     useEffect(() => {
         const fetchUsuarios = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:5000/usuarios'); // Endpoint para obter usuários
+                const response = await axios.get('http://127.0.0.1:5000/usuarios'); 
                 setUsuarios(response.data);
             } catch (error) {
                 console.error('Erro ao obter usuários:', error);
@@ -32,13 +32,13 @@ const CadastroProduto = () => {
                 nome,
                 preco: parseFloat(preco),
                 quantidade: parseInt(quantidade),
-                usuario_id: usuarioId // Envia o ID do usuário selecionado
+                usuario_id: usuarioId
             });
             setMensagem(response.data.message);
             setNome('');
             setPreco('');
             setQuantidade('');
-            setUsuarioId(''); // Limpa o campo de seleção
+            setUsuarioId(''); 
         } catch (error) {
             console.error('Erro ao cadastrar produto:', error);
             setMensagem('Erro ao cadastrar produto.');
@@ -46,7 +46,7 @@ const CadastroProduto = () => {
     };
 
     const handleViewProducts = () => {
-        navigate('/produtos'); // Navegar para a lista de produtos
+        navigate('/produtos'); 
     };
 
     return (
