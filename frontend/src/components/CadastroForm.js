@@ -75,7 +75,7 @@ const CadastroForm = () => {
                 </div>
                 <button type="submit" className="button">Cadastrar</button>
             </form>
-            {mensagem && <p>{mensagem}</p>} {/* Exibe a mensagem */}
+            {mensagem && <p>{mensagem}</p>} {/* Vai mostrar a mensagem */}
         </div>
     );
 };
